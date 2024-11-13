@@ -16,14 +16,11 @@ query_element() {
   echo "$ELEMENT_INFO"
 }
 
-# Query the database based on user input
 ELEMENT_RESULT=$(query_element)
 
-# Check if element exists in the database
 if [[ -z "$ELEMENT_RESULT" ]]; then
   echo "I could not find that element in the database."
 else
-  # Parse the query result and output it
   echo "$ELEMENT_RESULT" | while IFS="|" read atomic_number name symbol atomic_mass melting_point boiling_point type; do
     echo "The element with atomic number $atomic_number is $name ($symbol). It's a $type, with a mass of $atomic_mass amu."
     echo "$name has a melting point of $melting_point celsius and a boiling point of $boiling_point celsius."
